@@ -1,0 +1,82 @@
+---
+import Base from "../layouts/Base.astro";
+
+const faqs = [
+  {
+    q: "What do I need to bring?",
+    a: `<ul class="list-none space-y-1">
+      <li>● Sunglasses</li>
+      <li>● Sunscreen</li>
+      <li>● Food</li>
+      <li>● BYOB</li>
+      <li>● Cooler for fish transport (Ice provided)</li>
+      <li>● Waterproof bag and/or rain gear as the ride to/from can get wet</li>
+      <li>● Any special needs</li>
+    </ul>
+    <p class="mt-3 italic text-slate">*Please minimize the size of the coolers you bring aboard</p>`,
+  },
+  {
+    q: "Where do I park?",
+    a: `<p>Pickup location is in Marco Island, FL. The Captain will contact you that morning of exact slip and area to meet.</p>
+    <!-- TODO: replace with the real marina name + pickup address once Jon confirms -->`,
+  },
+  {
+    q: "Gratuity / Tips?",
+    a: `<p>We encourage tipping our boat crew. A tip can also be added to the card used for booking after the trip has been completed by request of the client.</p>`,
+  },
+  {
+    q: "Does the boat have a restroom?",
+    a: `<p>The vessel does not have a restroom.</p>`,
+  },
+  {
+    q: "How do I get in contact with the captain?",
+    a: `<p>He can be reached by phone call or text message at <a href="tel:+12392936137" class="font-semibold text-seafoam hover:text-navy">239-293-6137</a>.</p>`,
+  },
+  {
+    q: "What is included in the price of the trip?",
+    a: `<p>Bait, fuel, water bottles and a great time!</p>`,
+  },
+  {
+    q: "What if I get sea sick?",
+    a: `<p>If you are unsure or know that you get sea sick, please purchase Dramamine and take one pill before bed and one when you wake up for your trip.</p>`,
+  },
+  {
+    q: "What is the cancellation policy?",
+    a: `<p>20% deposit is non-refundable, except in the instance the trip must be canceled due to weather, unsafe conditions due to weather or a proven medical emergency among your party, or with our assigned Guides or Boat Captains (in the event a substitute Guide or Boat Captain cannot be secured for your scheduled excursion date).</p>
+    <p class="mt-3">Excursions may be canceled or rescheduled up to 48 hours prior to the scheduled and agreed start time for your excursion. For excursions canceled more than 5 days prior to the scheduled start time of the excursion or canceled due to weather, other unsafe conditions, or proven medical emergency, we offer a full refund for all deposit and other moneys paid. Or you may choose to reschedule your excursion for a more suitable time.</p>
+    <p class="mt-3">An excursion terminated by the Guide or Boat Captain due to bad weather, once the excursion has commenced, will not be entitled to a refund if the party agreed to begin the excursion. If we have to cancel an excursion due to inclement weather, we may reschedule the excursion for the first available date acceptable to us and your party, provided a reasonable amount of fishing or hunting time has not been completed. An excursion terminated due to member(s) of the your party getting sick will not be entitled to a refund or credit. We reserve the right to make whatever changes in the excursion that circumstances dictate, including substitutions of boats, and cancellation due to weather, mechanical failure, etc.</p>`,
+  },
+];
+---
+
+<Base
+  title="FAQ — Open Ocean Sportfishing | Marco Island, FL"
+  description="Answers to common questions about booking a fishing charter out of Marco Island — what to bring, parking, fishing licenses, cancellation policy and more."
+>
+  <section class="bg-white py-20 md:py-28">
+    <div class="mx-auto max-w-4xl px-4 md:px-8">
+      <p class="text-center font-display text-sm uppercase tracking-[0.4em] text-seafoam">Help</p>
+      <h1 class="mt-3 text-center text-4xl uppercase text-seafoam md:text-6xl">
+        Frequently Asked Questions
+      </h1>
+
+      <div class="mt-12 space-y-3">
+        {faqs.map((faq) => (
+          <details class="group rounded-lg bg-white shadow-sm ring-1 ring-navy/15 transition-shadow open:shadow-md">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg bg-navy px-5 py-4 text-left text-white">
+              <h2 class="text-xl font-semibold text-white">{faq.q}</h2>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 transition-transform group-open:rotate-180" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="bg-white px-5 py-5 text-base leading-relaxed text-navy/85" set:html={faq.a} />
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  details > summary::-webkit-details-marker { display: none; }
+</style>

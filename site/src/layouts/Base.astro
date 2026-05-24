@@ -1,0 +1,97 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  pathname?: string;
+  includeLocalBusinessSchema?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = "/og-default.jpg",
+  pathname = Astro.url.pathname,
+  includeLocalBusinessSchema = false,
+} = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://www.openoceansportfishing.com";
+const canonical = `${siteUrl}${pathname}`;
+const ogImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${siteUrl}/#business`,
+  name: "Open Ocean Sportfishing",
+  description: "Inshore and offshore sportfishing charters out of Marco Island, Florida aboard the Double Trouble, a 2020 Twin Vee 31' Catamaran.",
+  url: siteUrl,
+  telephone: "+1-239-293-6137",
+  email: "openoceansportfishing@gmail.com",
+  priceRange: "$1,850–$2,850",
+  image: ogImage,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Marco Island",
+    addressRegion: "FL",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 25.9430,
+    longitude: -81.7187,
+  },
+  areaServed: "Marco Island, FL",
+  sameAs: [
+    "https://www.facebook.com/Open-Ocean-Sportfishing-103314905599493/",
+    "https://www.instagram.com/openoceansportfishing/",
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Open Ocean Sportfishing" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#103350" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    {includeLocalBusinessSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    )}
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

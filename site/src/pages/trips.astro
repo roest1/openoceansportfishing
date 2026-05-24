@@ -1,0 +1,158 @@
+---
+import Base from "../layouts/Base.astro";
+
+const bookingUrl = "https://fishingbooker.com/charters/view/27547";
+
+const tiers = [
+  {
+    hours: "4 Hour",
+    label: "Half Day",
+    price: "$1,850",
+    summary: "Great for first-timers and families. Inshore + nearshore species.",
+  },
+  {
+    hours: "6 Hour",
+    label: "Three-Quarter Day",
+    price: "$2,250",
+    summary: "Push further offshore. More water covered, more shots at trophy fish.",
+  },
+  {
+    hours: "8 Hour",
+    label: "Full Day",
+    price: "$2,850",
+    summary: "Our deepest reach for Wahoo, Tuna, Sailfish and other bluewater species.",
+  },
+];
+
+{/* TODO: confirm max-persons per tier with client — currently FishingBooker listing shows 4hr=6 / 6hr=4 / 8hr=4. Boat capacity is 6 anglers. Defaulting all to 6 until Jon confirms. */}
+const maxPersons = 6;
+
+const includes = [
+  "Bait, tackle and fuel",
+  "Bottled water on every trip",
+  "Onboard ice to keep your catch fresh",
+];
+---
+
+<Base
+  title="Trips & Pricing — Open Ocean Sportfishing | Marco Island, FL"
+  description="Half-day, six-hour, and full-day sportfishing charters out of Marco Island, Florida. Book direct with Captain Jon aboard the Double Trouble."
+>
+  <section class="relative isolate flex min-h-[45vh] items-center justify-center overflow-hidden bg-navy text-white">
+    <video
+      class="absolute inset-0 h-full w-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="/video/trips-hero-poster.jpg"
+      aria-hidden="true"
+    >
+      <source src="/video/trips-hero.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-navy/85 via-navy/65 to-navy/85" aria-hidden="true"></div>
+    <div class="relative z-10 mx-auto max-w-4xl px-4 py-20 text-center md:px-8 md:py-28">
+      <p class="font-display text-sm uppercase tracking-[0.4em] text-seafoam">Charters</p>
+      <h1 class="mt-3 text-5xl uppercase text-white md:text-7xl">
+        Trips and Pricing
+      </h1>
+      <p class="mx-auto mt-6 max-w-xl text-sm uppercase tracking-widest text-cream md:text-base">
+        To request a trip length not listed or additional persons on a trip, please contact us!
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream py-12 md:py-16">
+    <div class="mx-auto max-w-6xl px-4 md:px-8">
+      <p class="text-center font-display text-sm uppercase tracking-[0.4em] text-seafoam">Pick your trip</p>
+      <h2 class="mt-2 text-center text-3xl text-navy uppercase tracking-widest md:text-4xl">
+        Click a Trip Length Below to Book
+      </h2>
+
+      <div class="mt-12 grid gap-8 md:grid-cols-3 md:gap-6">
+        {tiers.map((tier, i) => (
+          <article class:list={[
+            "group flex flex-col items-center rounded-2xl p-8 md:p-10 text-center shadow-xl ring-1 transition-shadow hover:shadow-2xl",
+            i === 1 ? "bg-navy text-cream ring-navy/40 md:-translate-y-3" : "bg-white text-navy ring-navy/10",
+          ]}>
+            <p class:list={[
+              "text-xs uppercase tracking-[0.3em]",
+              i === 1 ? "text-seafoam" : "text-seafoam",
+            ]}>
+              {tier.label}
+            </p>
+            <h3 class:list={[
+              "mt-2 text-3xl uppercase tracking-widest md:text-4xl",
+              i === 1 ? "text-cream" : "text-navy",
+            ]}>
+              {tier.hours}
+            </h3>
+            <div class:list={[
+              "my-5 h-px w-16",
+              i === 1 ? "bg-seafoam/60" : "bg-slate/40",
+            ]} aria-hidden="true"></div>
+            <p class:list={[
+              "font-display text-5xl italic md:text-6xl",
+              i === 1 ? "text-cream" : "text-navy",
+            ]}>
+              {tier.price}
+            </p>
+            <p class:list={[
+              "mt-3 text-xs uppercase tracking-[0.25em]",
+              i === 1 ? "text-cream/70" : "text-slate",
+            ]}>
+              Max persons: {maxPersons}
+            </p>
+            <p class:list={[
+              "mt-5 max-w-[22ch] text-sm leading-relaxed",
+              i === 1 ? "text-cream/90" : "text-slate",
+            ]}>
+              {tier.summary}
+            </p>
+            <a
+              href={bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class:list={[
+                "mt-7 inline-block rounded-full px-8 py-3 text-sm font-bold uppercase tracking-widest shadow-md transition-colors",
+                i === 1
+                  ? "bg-seafoam text-white hover:bg-cream hover:text-navy"
+                  : "bg-navy text-white hover:bg-seafoam",
+              ]}
+            >
+              Book {tier.hours}
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-14 text-center text-base text-slate">
+        Looking for a different trip length or larger group?{" "}
+        <a href="/contact" class="font-semibold text-seafoam hover:text-navy">
+          Get in touch
+        </a>
+        .
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-10 md:py-14">
+    <div class="mx-auto max-w-5xl px-4 md:px-8">
+      <p class="text-center font-display text-sm uppercase tracking-[0.4em] text-seafoam">What's Included</p>
+      <h2 class="mt-2 text-center text-3xl text-navy uppercase tracking-widest md:text-4xl">
+        Every Trip Comes With
+      </h2>
+      <ul class="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {includes.map((item) => (
+          <li class="flex items-start justify-center gap-3 rounded-lg bg-cream/60 p-4 text-center ring-1 ring-navy/5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0 text-seafoam" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-sm font-semibold text-navy">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>

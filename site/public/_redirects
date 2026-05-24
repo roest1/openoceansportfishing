@@ -1,0 +1,3 @@
+# WP legacy redirects (?page_id=...) live in Cloudflare's Bulk Redirects
+# UI once the real domain cuts over — _redirects doesn't reliably match
+# query strings.

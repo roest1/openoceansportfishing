@@ -1,0 +1,11 @@
+# Claude Code local state
+.claude/
+
+# Private business docs
+invoice-*.md
+
+# OS / editor
+.DS_Store
+
+# Wrangler CLI local cache
+.wrangler/

@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@import "@fontsource/bebas-neue/400.css";
+@import "@fontsource/open-sans/400.css";
+@import "@fontsource/open-sans/600.css";
+@import "@fontsource/open-sans/700.css";
+
+@theme {
+  --color-navy: #103350;
+  --color-seafoam: #629cb6;
+  --color-cream: #eef1f3;
+  --color-slate: #777777;
+  --font-display: "Bebas Neue", system-ui, sans-serif;
+  --font-body: "Open Sans", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    color: var(--color-slate);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: #ffffff;
+    line-height: 1.6;
+  }
+
+  :where(h1, h2, h3, h4) {
+    font-family: var(--font-display);
+    letter-spacing: 0.04em;
+    color: var(--color-navy);
+    line-height: 1.1;
+    font-weight: 400;
+  }
+
+  :where(a) {
+    color: var(--color-seafoam);
+    text-decoration: none;
+  }
+
+  :where(a):hover {
+    color: var(--color-navy);
+  }
+
+  :where(img, video) {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

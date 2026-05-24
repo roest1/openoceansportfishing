@@ -1,0 +1,174 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import doubleTroubleLogo from "../assets/logos/double-trouble-logo.png";
+import sailfishPhoto from "../assets/images/gallery/sailfish-01.jpg";
+import cardAbout from "../assets/images/gallery/double-trouble-03.jpg";
+import cardAboutHover from "../assets/images/gallery/double-trouble-01.jpg";
+import cardTrips from "../assets/images/gallery/reeling-01.jpg";
+import cardTripsHover from "../assets/images/gallery/crew-01.jpg";
+import cardFaq from "../assets/images/gallery/sunset-02.jpg";
+import cardFaqHover from "../assets/images/gallery/wahoo-02.jpg";
+
+const cards = [
+  {
+    href: "/about",
+    title: "About the Double Trouble",
+    image: cardAbout,
+    hoverImage: cardAboutHover,
+    alt: "Captain Jon's Twin Vee 31′ catamaran on the Gulf",
+  },
+  {
+    href: "/trips",
+    title: "Pricing & Services",
+    image: cardTrips,
+    hoverImage: cardTripsHover,
+    alt: "A morning's offshore catch on deck",
+  },
+  {
+    href: "/faq",
+    title: "How It Works!",
+    image: cardFaq,
+    hoverImage: cardFaqHover,
+    alt: "The Double Trouble at sunset",
+  },
+];
+---
+
+<Base
+  title="Open Ocean Sportfishing — Marco Island Fishing Charters"
+  description="Inshore and offshore fishing charters out of Marco Island, Florida aboard the Double Trouble — a 2020 Twin Vee 31′ Catamaran. Captain Jon, 239-293-6137."
+  includeLocalBusinessSchema
+>
+  <section class="relative isolate h-[88vh] min-h-[520px] w-full overflow-hidden">
+    <video
+      class="absolute top-0 left-0 h-full w-[103%] max-w-none object-cover object-[48%_50%]"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="/video/hero-poster.jpg"
+      aria-hidden="true"
+    >
+      <source src="/video/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-navy/10 via-transparent to-navy/60" aria-hidden="true"></div>
+
+    <div class="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-16 text-center md:pb-24">
+      <a
+        href="/trips"
+        class="inline-block rounded-full bg-seafoam px-10 py-4 text-sm font-bold uppercase tracking-widest text-white shadow-xl ring-2 ring-white/40 transition-colors hover:bg-navy"
+      >
+        See Trips &amp; Pricing
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-white py-16 md:py-24">
+    <div class="mx-auto grid max-w-7xl items-center gap-8 px-4 md:grid-cols-[28%_auto] md:gap-10 md:px-8">
+      <div class="flex justify-center md:justify-start">
+        <Image
+          src={doubleTroubleLogo}
+          alt="Double Trouble — Marco Island, FL"
+          widths={[400, 600, 900]}
+          sizes="(max-width: 768px) 280px, 28vw"
+          class="h-auto w-72 max-w-full md:w-full"
+        />
+      </div>
+      <div class="text-center">
+        <h2 class="text-3xl font-black uppercase tracking-wide text-navy md:text-5xl">
+          Come On Board the Double Trouble!
+        </h2>
+        <p class="mt-5 mx-auto max-w-3xl text-base leading-relaxed text-navy/80 md:text-lg">
+          Welcome to Open Ocean Sportfishing! We specialize in inshore and offshore fishing onboard
+          the Double Trouble, our 2020 Twin Vee 31′ Catamaran. We pride ourselves in getting our
+          passengers hooked on a variety of fish species while catering to all anglers, from novice
+          to experienced. Our charters depart out of Marco Island, Florida and we provide all
+          tackle, fuel and water bottles. If you have questions, please reach out to us!
+        </p>
+        <a
+          href="/contact"
+          class="mt-8 inline-block rounded-full bg-seafoam px-8 py-3 text-sm font-bold uppercase tracking-widest text-white shadow-md transition-colors hover:bg-navy"
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* TODO: confirm Marco-Island-appropriate photography with client; replace placeholders when fresh photos arrive */}
+  <section class="bg-cream py-14 md:py-20">
+    <div class="mx-auto max-w-6xl px-4 md:px-8">
+      <div class="grid gap-6 md:grid-cols-3">
+        {cards.map((card) => (
+          <a
+            href={card.href}
+            class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5 transition-transform hover:-translate-y-1 hover:shadow-2xl"
+          >
+            <Image
+              src={card.image}
+              alt={card.alt}
+              widths={[480, 720, 960]}
+              sizes="(max-width: 768px) 100vw, 33vw"
+              class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <Image
+              src={card.hoverImage}
+              alt=""
+              aria-hidden="true"
+              widths={[480, 720, 960]}
+              sizes="(max-width: 768px) 100vw, 33vw"
+              class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/30 to-navy/0 transition-opacity duration-500 group-hover:from-navy/70" aria-hidden="true"></div>
+            <div class="relative flex h-full items-end justify-center p-6 pb-7 text-center md:pb-8">
+              <h3 class="text-2xl text-white uppercase tracking-wider drop-shadow md:text-3xl">
+                {card.title}
+              </h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="relative overflow-hidden bg-navy py-20 md:py-28">
+    <div
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style={`background-image: url('${sailfishPhoto.src}')`}
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-navy/85 via-navy/65 to-navy/90" aria-hidden="true"></div>
+    <div class="relative z-10 mx-auto max-w-4xl px-4 text-center md:px-8">
+      <h2 class="text-3xl text-white uppercase tracking-[0.3em] drop-shadow-lg md:text-4xl">
+        Follow Us on Facebook &amp; Instagram
+      </h2>
+      <div class="mt-10 flex justify-center gap-5">
+        <a
+          href="https://www.facebook.com/Open-Ocean-Sportfishing-103314905599493/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Ocean Sportfishing on Facebook"
+          class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-seafoam text-white transition-colors hover:bg-white hover:text-navy"
+        >
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.99 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.99 22 12z"/>
+          </svg>
+        </a>
+        <a
+          href="https://www.instagram.com/openoceansportfishing/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Ocean Sportfishing on Instagram"
+          class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-seafoam text-white transition-colors hover:bg-white hover:text-navy"
+        >
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.2c3.2 0 3.584.012 4.85.07 1.366.062 2.633.336 3.608 1.311.975.975 1.249 2.242 1.311 3.608.058 1.266.07 1.65.07 4.85 0 3.2-.012 3.584-.07 4.85-.062 1.366-.336 2.633-1.311 3.608-.975.975-2.242 1.249-3.608 1.311-1.266.058-1.65.07-4.85.07-3.2 0-3.584-.012-4.85-.07-1.366-.062-2.633-.336-3.608-1.311-.975-.975-1.249-2.242-1.311-3.608C2.212 15.584 2.2 15.2 2.2 12c0-3.2.012-3.584.07-4.85.062-1.366.336-2.633 1.311-3.608.975-.975 2.242-1.249 3.608-1.311C8.416 2.212 8.8 2.2 12 2.2zm0 1.8c-3.144 0-3.5.012-4.736.068-1.039.047-1.603.218-1.978.363-.497.193-.85.423-1.224.797-.374.374-.604.727-.797 1.224-.145.375-.316.94-.363 1.978C2.812 8.5 2.8 8.856 2.8 12c0 3.144.012 3.5.068 4.736.047 1.039.218 1.603.363 1.978.193.497.423.85.797 1.224.374.374.727.604 1.224.797.375.145.94.316 1.978.363 1.236.056 1.592.068 4.736.068s3.5-.012 4.736-.068c1.039-.047 1.603-.218 1.978-.363.497-.193.85-.423 1.224-.797.374-.374.604-.727.797-1.224.145-.375.316-.94.363-1.978.056-1.236.068-1.592.068-4.736s-.012-3.5-.068-4.736c-.047-1.039-.218-1.603-.363-1.978-.193-.497-.423-.85-.797-1.224-.374-.374-.727-.604-1.224-.797-.375-.145-.94-.316-1.978-.363C15.5 4.012 15.144 4 12 4zm0 3.064c-2.728 0-4.936 2.208-4.936 4.936S9.272 16.936 12 16.936 16.936 14.728 16.936 12 14.728 7.064 12 7.064zm0 8.136c-1.768 0-3.2-1.432-3.2-3.2s1.432-3.2 3.2-3.2 3.2 1.432 3.2 3.2-1.432 3.2-3.2 3.2zm5.136-9.512a1.152 1.152 0 110 2.304 1.152 1.152 0 010-2.304z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
